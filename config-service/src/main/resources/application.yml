@@ -1,6 +1,13 @@
-Server:
+
+server:
   port: 8888
 spring:
+  application:
+    name: "config"
+  eureka:
+    client:
+      healthcheck:
+        enabled: true
   profiles:
     active: native
   cloud:

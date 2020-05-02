@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: "users"
+  mongodb:
+    embedded:
+      version: 2.0.5
+      features: sync_delay
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+server:
+  port: 8082
