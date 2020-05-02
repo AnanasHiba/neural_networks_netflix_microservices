@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: "data"
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+server:
+  port: 8080
