@@ -8,12 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="service-discovery" />
         <module name="neural_network" />
-        <module name="user-service" />
         <module name="config-service" />
+        <module name="user-service" />
+        <module name="auth-service" />
         <module name="data-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="auth-service" target="1.8" />
       <module name="config-service" target="1.8" />
       <module name="data-service" target="1.8" />
       <module name="neural_network" target="1.8" />
@@ -23,6 +25,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="auth-service" options="-parameters" />
       <module name="config-service" options="-parameters" />
       <module name="data-service" options="-parameters" />
       <module name="neural_network" options="-parameters" />
