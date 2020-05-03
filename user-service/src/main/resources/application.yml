@@ -1,10 +1,9 @@
 spring:
   application:
     name: "users"
-  mongodb:
-    embedded:
-      version: 2.0.5
-      features: sync_delay
+  data:
+    mongodb:
+      uri: mongodb+srv://root:root1234@cluster0-edkji.mongodb.net/test?replicaSet=Cluster0-shard-0&readPreference=primary&connectTimeoutMS=10000&authSource=admin&authMechanism=SCRAM-SHA-1
 eureka:
   client:
     healthcheck:
