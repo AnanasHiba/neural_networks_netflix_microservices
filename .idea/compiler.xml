@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="neural_networks_netflix_microservices" />
         <module name="service-discovery" />
         <module name="security-service" />
-        <module name="neural_networks_netflix_microservices" />
-        <module name="user-service" />
         <module name="config-service" />
+        <module name="user-service" />
         <module name="data-service" />
       </profile>
     </annotationProcessing>
@@ -21,6 +21,7 @@
       <module name="neural_networks_netflix_microservices" target="1.8" />
       <module name="security-service" target="1.8" />
       <module name="service-discovery" target="1.8" />
+      <module name="service-discovery (1)" target="1.8" />
       <module name="user-service" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -32,6 +33,7 @@
       <module name="neural_networks_netflix_microservices" options="-parameters" />
       <module name="security-service" options="-parameters" />
       <module name="service-discovery" options="-parameters" />
+      <module name="service-discovery (1)" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>
   </component>
