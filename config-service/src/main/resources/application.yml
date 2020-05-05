@@ -8,10 +8,13 @@ spring:
     client:
       healthcheck:
         enabled: true
-  profiles:
-    active: native
   cloud:
     config:
       server:
         native:
-          search-locations: classpath:config/
+          search-locations: classpath:/shared
+  profiles:
+    active: native
+  security:
+    user:
+      password: "root1234"
