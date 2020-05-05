@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/config-service/config-service.iml" filepath="$PROJECT_DIR$/config-service/config-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/data-service/data-service.iml" filepath="$PROJECT_DIR$/data-service/data-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/neural_networks_netflix_microservices.iml" filepath="$PROJECT_DIR$/.idea/neural_networks_netflix_microservices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/security-service/security-service.iml" filepath="$PROJECT_DIR$/security-service/security-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service-discovery/service-discovery.iml" filepath="$PROJECT_DIR$/service-discovery/service-discovery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-service/user-service.iml" filepath="$PROJECT_DIR$/user-service/user-service.iml" />
+    </modules>
+  </component>
+</project>
