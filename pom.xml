@@ -39,6 +39,7 @@
         <module>service-discovery</module>
         <module>user-service</module>
         <module>security-service</module>
+        <module>zuul-service</module>
     </modules>
 
 </project>
