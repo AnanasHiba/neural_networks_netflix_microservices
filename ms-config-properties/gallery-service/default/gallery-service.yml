@@ -1,0 +1,4 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://root:root1234@cluster0-edkji.mongodb.net/gallery?retryWrites=true&w=majority

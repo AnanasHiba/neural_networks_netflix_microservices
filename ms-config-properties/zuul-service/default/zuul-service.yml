@@ -1,0 +1,10 @@
+zuul:
+  routes:
+    auth-service:
+      strip-prefix: false
+      sensitive-headers: Cookie,Set-Cookie  # Exclude authorization from sensitive headers
+      path: /auth/**   # Map path to auth service
+      service-id: security-service
+    gallery-service:
+      path: /gallery/**  # Map paths to gallery service
+      service-id: gallery-service
