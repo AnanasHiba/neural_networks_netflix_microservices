@@ -8,6 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/AnanasHiba/neural_networks_netflix_microservices/
+          uri: https://github.com/AnanasHiba/neural_networks_netflix_microservices.git
           search-paths:
             - "ms-config-properties/{application}/{profile}"
+
