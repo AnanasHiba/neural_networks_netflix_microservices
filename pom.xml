@@ -40,6 +40,7 @@
         <module>user-service</module>
         <module>security-service</module>
         <module>zuul-service</module>
+        <module>gallery-service</module>
     </modules>
 
 </project>

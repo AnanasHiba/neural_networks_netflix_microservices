@@ -1,20 +1,13 @@
-
-server:
-  port: 8888
 spring:
-  application:
-    name: "config"
-  eureka:
-    client:
-      healthcheck:
-        enabled: true
+  profiles:
+    active: native
+---
+spring:
+  profiles: git
   cloud:
     config:
       server:
-        native:
-          search-locations: classpath:/shared
-  profiles:
-    active: native
-  security:
-    user:
-      password: "root1234"
+        git:
+          uri: https://github.com/AnanasHiba/neural_networks_netflix_microservices/
+          search-paths:
+            - "ms-config-properties/{application}/{profile}"

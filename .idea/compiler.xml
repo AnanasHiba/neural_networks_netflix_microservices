@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="neural_networks_netflix_microservices" />
         <module name="service-discovery" />
+        <module name="gallery-service" />
         <module name="security-service" />
         <module name="config-service" />
         <module name="user-service" />
@@ -19,6 +20,7 @@
       <module name="auth-service" target="1.8" />
       <module name="config-service" target="1.8" />
       <module name="data-service" target="1.8" />
+      <module name="gallery-service" target="1.8" />
       <module name="neural_networks_netflix_microservices" target="1.8" />
       <module name="security-service" target="1.8" />
       <module name="service-discovery" target="1.8" />
@@ -32,6 +34,7 @@
       <module name="auth-service" options="-parameters" />
       <module name="config-service" options="-parameters" />
       <module name="data-service" options="-parameters" />
+      <module name="gallery-service" options="-parameters" />
       <module name="neural_networks_netflix_microservices" options="-parameters" />
       <module name="security-service" options="-parameters" />
       <module name="service-discovery" options="-parameters" />

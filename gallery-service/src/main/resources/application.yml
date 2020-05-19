@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: gallery-service
+  data:
+     mongodb:
+      uri: mongodb+srv://root:root1234@cluster0-edkji.mongodb.net/gallery?retryWrites=true&w=majority
+
+server:
+  port: 8081
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+
+cloud:
+  config:
+    discovery:
+      enabled: true
+      service-id: config-server

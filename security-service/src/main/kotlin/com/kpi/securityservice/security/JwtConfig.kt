@@ -5,29 +5,29 @@ import org.springframework.beans.factory.annotation.Value
 class JwtConfig {
 
     @Value("\${security.jwt.uri:/auth/**}")
-    private var Uri: String? = null
+    private lateinit var uri: String
 
     @Value("\${security.jwt.header:Authorization}")
-    private var header: String? = null
+    private lateinit var header: String
 
     @Value("\${security.jwt.prefix:Bearer }")
-    private var prefix: String? = null
+    private lateinit var prefix: String
 
     @Value("\${security.jwt.expiration:#{24*60*60}}")
     private var expiration = 0
 
     @Value("\${security.jwt.secret:JwtSecretKey}")
-    private var secret: String? = null
+    private lateinit var secret: String
 
-    fun getUri(): String? {
-        return Uri
+    fun getUri(): String {
+        return uri
     }
 
-    fun getHeader(): String? {
+    fun getHeader(): String {
         return header
     }
 
-    fun getPrefix(): String? {
+    fun getPrefix(): String {
         return prefix
     }
 
@@ -35,7 +35,7 @@ class JwtConfig {
         return expiration
     }
 
-    fun getSecret(): String? {
+    fun getSecret(): String {
         return secret
     }
 }
