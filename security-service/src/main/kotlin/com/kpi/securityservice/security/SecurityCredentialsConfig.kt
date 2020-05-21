@@ -31,7 +31,7 @@ class SecurityCredentialsConfig: WebSecurityConfigurerAdapter() {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 // handle an authorized attempts
-                .exceptionHandling().authenticationEntryPoint { _, rsp, _ ->  rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED)}
+                .exceptionHandling().authenticationEntryPoint { req, rsp, e ->  rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED)}
         .and()
                 // Add a filter to validate user credentials and add token in the response header
 
