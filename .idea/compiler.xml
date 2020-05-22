@@ -6,17 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="neural_networks_netflix_microservices" />
+        <module name="account-service" />
         <module name="service-discovery" />
-        <module name="gallery-service" />
+        <module name="neural_networks_netflix_microservices" />
         <module name="security-service" />
-        <module name="config-service" />
-        <module name="user-service" />
         <module name="zuul-service" />
+        <module name="gallery-service" />
+        <module name="config-service" />
         <module name="data-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="account-service" target="1.8" />
       <module name="auth-service" target="1.8" />
       <module name="config-service" target="1.8" />
       <module name="data-service" target="1.8" />
@@ -25,12 +26,12 @@
       <module name="security-service" target="1.8" />
       <module name="service-discovery" target="1.8" />
       <module name="service-discovery (1)" target="1.8" />
-      <module name="user-service" target="1.8" />
       <module name="zuul-service" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="account-service" options="-parameters" />
       <module name="auth-service" options="-parameters" />
       <module name="config-service" options="-parameters" />
       <module name="data-service" options="-parameters" />
@@ -39,7 +40,6 @@
       <module name="security-service" options="-parameters" />
       <module name="service-discovery" options="-parameters" />
       <module name="service-discovery (1)" options="-parameters" />
-      <module name="user-service" options="-parameters" />
       <module name="zuul-service" options="-parameters" />
     </option>
   </component>
