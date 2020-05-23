@@ -13,7 +13,6 @@
         <module name="zuul-service" />
         <module name="gallery-service" />
         <module name="config-service" />
-        <module name="data-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

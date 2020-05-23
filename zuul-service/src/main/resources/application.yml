@@ -14,7 +14,7 @@ eureka:
 
 zuul:
   routes:
-    auth-service:
+    security-service:
       strip-prefix: false
       sensitive-headers: Cookie,Set-Cookie
       path: /auth/**
@@ -22,3 +22,6 @@ zuul:
     gallery-service:
       path: /gallery/**
       service-id: gallery-service
+    account-service:
+      path: /account/**
+      service-id: account-service

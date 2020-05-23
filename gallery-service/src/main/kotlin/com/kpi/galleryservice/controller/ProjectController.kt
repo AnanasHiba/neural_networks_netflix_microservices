@@ -1,79 +1,56 @@
 package com.kpi.galleryservice.controller
 
-import com.kpi.galleryservice.model.Project
-import com.kpi.galleryservice.repository.ProjectRepository
+import com.kpi.galleryservice.domain.Project
+import com.kpi.galleryservice.service.ProjectService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.core.env.Environment
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
-import java.util.logging.Logger
+import java.security.Principal
 import javax.validation.Valid
 
 
 @RestController
 @RequestMapping("/")
 class ProjectController {
-    var logger = Logger.getLogger(ProjectController::class.java.getName())
 
     @Autowired
-    private lateinit var env: Environment
+    private lateinit var environment: Environment
 
     @Autowired
-    private lateinit var projectRepository: ProjectRepository
+    private lateinit var projectService: ProjectService
+
 
     @RequestMapping("/")
-    fun home(): String? {
-        val home = "Gallery-Service running at port: " + env.getProperty("local.server.port")
-        logger.info(home)
-        return home
+    fun home(): String {
+        return "Gallery-Service running at port: " + environment.getProperty("local.server.port")
     }
 
-    @GetMapping("/getAll")
-    fun getAllProjects(): Flux<Project> {
-        return projectRepository.findAll()
+    @RequestMapping(path = ["/get_all"], method = [RequestMethod.GET])
+    fun getAllProjects(principal: Principal): MutableList<Project> {
+        return projectService.findAll(principal.name)
     }
 
     @PostMapping("/create")
-    fun createProject(@RequestBody project: @Valid Project): Mono<Project> {
-        return projectRepository.save(project)
+    fun createProject(principal: Principal, @RequestBody project: @Valid Project): Project {
+        return projectService.create(project,principal.name)
     }
 
     @GetMapping("/get/{id}")
-    fun getProjectById(@PathVariable(value = "id") projectId: String): Mono<ResponseEntity<Project>> {
-        return projectRepository.findById(projectId)
-                .map { saveProject -> ResponseEntity.ok(saveProject) } // the map operator is called on this Project to wrap it in a ResponseEntity object with status code 200 OK
-                .defaultIfEmpty(ResponseEntity.notFound().build()) // finally there is a call to defaultIfEmpty to build an empty ResponseEntity with status 404 NOT FOUND if the Project was not found.
+    fun getProjectById(principal: Principal, @PathVariable(value = "id") projectId: String): Project {
+        return projectService.get(projectId, principal.name)
     }
 
-    @PutMapping("/update/{id}")
-    fun updateProject(@PathVariable(value = "id") projectId: String,
-                     @RequestBody project: @Valid Project): Mono<ResponseEntity<Project>> {
-        return projectRepository.findById(projectId)
-                .flatMap{ existingProject ->
-                    existingProject.description = project.description
-                    projectRepository.save(existingProject)
-                }
-                .map{ updateProject -> ResponseEntity(updateProject, HttpStatus.OK) }
-                // it saves them to the database and wraps this updated Project in a ResponseEntity with status code 200 OK in case of success or 404 NOT FOUND in case of failure.
-                .defaultIfEmpty(ResponseEntity(HttpStatus.NOT_FOUND))
+    @PutMapping("/update")
+    fun updateProject(principal: Principal,
+                     @RequestBody project: @Valid Project) {
+        projectService.saveChanges(project, principal.name)
     }
 
     @DeleteMapping("/delete/{id}")
-    fun deleteProject(@PathVariable(value = "id") projectId: String): Mono<ResponseEntity<Void>> {
-        return projectRepository.findById(projectId) // First, you search the Project you want to delete.
-                .flatMap{ existingProject ->
-                    projectRepository.delete(existingProject) // Next, you delete and return 200 OK to show your delete was successful
-                            .then(Mono.just(ResponseEntity<Void>(HttpStatus.OK)))
-                }
-                .defaultIfEmpty(ResponseEntity(HttpStatus.NOT_FOUND)) // or you return 404 NOT FOUND to say the Project was not found
-    }
-
-    @DeleteMapping("/deleteAllProjects")
-    fun deleteAllProjects(): Mono<Void?>? {
-        return projectRepository.deleteAll()
+    fun deleteProject(principal: Principal, @PathVariable(value = "id") projectId: String) {
+        projectService.delete(projectId, principal.name)
     }
 
 }
