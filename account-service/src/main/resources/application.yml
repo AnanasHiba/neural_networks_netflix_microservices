@@ -3,7 +3,7 @@ spring:
     name: "account-service"
   cloud:
     config:
-      uri: http://config:8888
+      uri: http://localhost:8888
       fail-fast: true
       password: root1234
       username: user

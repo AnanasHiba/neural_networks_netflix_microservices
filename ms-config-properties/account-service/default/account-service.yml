@@ -23,5 +23,5 @@ security:
 
 server:
   servlet:
-    context-path: /accounts
+    context-path: /account
   port: 8082
