@@ -2,10 +2,10 @@ zuul:
   routes:
 
     security-service:
-      strip-prefix: false
-      sensitive-headers: Cookie,Set-Cookie
+      stripPrefix: false
       path: /uaa/**
       service-id: security-service
+      sensitiveHeaders:
 
     gallery-service:
       path: /gallery/**
