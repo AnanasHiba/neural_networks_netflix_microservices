@@ -4,7 +4,7 @@ zuul:
     security-service:
       strip-prefix: false
       sensitive-headers: Cookie,Set-Cookie
-      path: /auth/**
+      path: /uaa/**
       service-id: security-service
 
     gallery-service:
