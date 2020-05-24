@@ -3,11 +3,16 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/account-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/account-service/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/config-service" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/data-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config-service/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gallery-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gallery-service/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/security-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/security-service/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-discovery" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-discovery/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zuul-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zuul-service/src/main/kotlin" charset="UTF-8" />
   </component>
 </project>

@@ -1,27 +1,10 @@
 spring:
   application:
     name: zuul-service
+  cloud:
+    config:
+      uri: http://config:8888
+      fail-fast: true
+      password: root1234
+      username: user
 
-server:
-  port: 8766
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
-  instance:
-    preferIpAddress: true
-
-zuul:
-  routes:
-    security-service:
-      strip-prefix: false
-      sensitive-headers: Cookie,Set-Cookie
-      path: /auth/**
-      service-id: security-service
-    gallery-service:
-      path: /gallery/**
-      service-id: gallery-service
-    account-service:
-      path: /account/**
-      service-id: account-service

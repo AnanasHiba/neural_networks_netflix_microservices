@@ -1,23 +1,9 @@
 spring:
   application:
     name: "account-service"
-  data:
-    mongodb:
-      uri: mongodb+srv://root:root1234@cluster0-edkji.mongodb.net/account?replicaSet=Cluster0-shard-0&readPreference=primary&connectTimeoutMS=10000&authSource=admin&authMechanism=SCRAM-SHA-1
-eureka:
-  client:
-    healthcheck:
-      enabled: true
-security:
-  oauth2:
-    client:
-      clientId: "account-service"
-      clientSecret: "root1234"
-      accessTokenUri: http://localhost:9100/uaa/oauth/token
-      grant-type: client_credentials
-      scope: server
-    resource:
-      user-info-uri: http://localhost:9100/uaa/user/current
-
-server:
-  port: 8082
+  cloud:
+    config:
+      uri: http://config:8888
+      fail-fast: true
+      password: root1234
+      username: user

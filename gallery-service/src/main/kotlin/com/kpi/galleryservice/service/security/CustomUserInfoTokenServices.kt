@@ -2,6 +2,7 @@ package com.kpi.galleryservice.service.security
 
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.security.oauth2.resource.AuthoritiesExtractor
 import org.springframework.boot.autoconfigure.security.oauth2.resource.FixedAuthoritiesExtractor
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -23,14 +24,16 @@ import kotlin.collections.LinkedHashSet
 
 class CustomUserInfoTokenServices(private val userInfoEndpointUrl: String, private val clientId: String) : ResourceServerTokenServices {
     protected val logger: Log = LogFactory.getLog(javaClass)
-    private var restTemplate: OAuth2RestOperations? = null
+    @Autowired
+    private lateinit var restTemplate: OAuth2RestOperations
     private var tokenType: String = DefaultOAuth2AccessToken.BEARER_TYPE
     private var authoritiesExtractor: AuthoritiesExtractor = FixedAuthoritiesExtractor()
+
     fun setTokenType(tokenType: String) {
         this.tokenType = tokenType
     }
 
-    fun setRestTemplate(restTemplate: OAuth2RestOperations?) {
+    fun setRestTemplate(restTemplate: OAuth2RestOperations) {
         this.restTemplate = restTemplate
     }
 
@@ -54,12 +57,13 @@ class CustomUserInfoTokenServices(private val userInfoEndpointUrl: String, priva
         val principal = getPrincipal(map)
         val request: OAuth2Request = getRequest(map)
         val authorities: List<GrantedAuthority> = authoritiesExtractor
-                .extractAuthorities(map as MutableMap<String, Any>?)
+                .extractAuthorities(map as MutableMap<String, Any>)
         val token = UsernamePasswordAuthenticationToken(
                 principal, "N/A", authorities)
         token.details = map
         return OAuth2Authentication(request, token)
     }
+
 
     private fun getPrincipal(map: MutableMap<*, *>?): Any? {
         for (key in PRINCIPAL_KEYS) {
@@ -78,11 +82,11 @@ class CustomUserInfoTokenServices(private val userInfoEndpointUrl: String, priva
         val clientId = request["clientId"] as String
         val scope: Set<String> =
                 if (request.containsKey("scope")) {
-            LinkedHashSet(request["scope"] as Collection<String>)
-        }
-        else {
-            LinkedHashSet(emptySet<String>())
-        }
+                    LinkedHashSet(request["scope"] as Collection<String>)
+                }
+                else {
+                    LinkedHashSet(emptySet<String>())
+                }
 
 
         return OAuth2Request(null, clientId, null, true, HashSet(scope),
@@ -93,21 +97,22 @@ class CustomUserInfoTokenServices(private val userInfoEndpointUrl: String, priva
         throw UnsupportedOperationException("Not supported: read access token")
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun getMap(path: String, accessToken: String): MutableMap<*, *>? {
         logger.debug("Getting user info from: $path")
         try {
-            var restTemplate: OAuth2RestOperations? = restTemplate
+            var restTemplate: OAuth2RestOperations? = this.restTemplate
             if (restTemplate == null) {
                 val resource = BaseOAuth2ProtectedResourceDetails()
-                resource.clientId = clientId
+                resource.clientId = this.clientId
                 restTemplate = OAuth2RestTemplate(resource)
             }
-            val existingToken: OAuth2AccessToken = restTemplate.oAuth2ClientContext
+            val existingToken: OAuth2AccessToken? = restTemplate.oAuth2ClientContext
                     .accessToken
-            if (accessToken != existingToken.value) {
+            if (existingToken == null || accessToken != existingToken.value) {
                 val token = DefaultOAuth2AccessToken(
                         accessToken)
-                token.tokenType = tokenType
+                token.tokenType = this.tokenType
                 restTemplate.oAuth2ClientContext.accessToken = token
             }
             return restTemplate.getForEntity(path, MutableMap::class.java).body
@@ -115,7 +120,7 @@ class CustomUserInfoTokenServices(private val userInfoEndpointUrl: String, priva
             logger.info("Could not fetch user details: " + ex.javaClass + ", "
                     + ex.message)
             return singletonMap<String, Any>("error",
-            "Could not fetch user details")
+                    "Could not fetch user details")
         }
     }
 

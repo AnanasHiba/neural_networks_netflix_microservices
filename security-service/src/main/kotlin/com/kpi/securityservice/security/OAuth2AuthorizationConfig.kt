@@ -47,6 +47,11 @@ class OAuth2AuthorizationConfig : AuthorizationServerConfigurerAdapter() {
                 .secret(env.getProperty("ACCOUNT_SERVICE_PASSWORD"))
                 .authorizedGrantTypes("client_credentials", "refresh_token")
                 .scopes("server")
+                .and()
+                .withClient("gallery-service")
+                .secret(env.getProperty("ACCOUNT_SERVICE_PASSWORD"))
+                .authorizedGrantTypes("client_credentials", "refresh_token")
+                .scopes("server")
         // @formatter:on
     }
 

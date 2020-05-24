@@ -1,10 +1,40 @@
 zuul:
   routes:
-    auth-service:
+
+    security-service:
       strip-prefix: false
-      sensitive-headers: Cookie,Set-Cookie  # Exclude authorization from sensitive headers
-      path: /auth/**   # Map path to auth service
+      sensitive-headers: Cookie,Set-Cookie
+      path: /auth/**
       service-id: security-service
+
     gallery-service:
-      path: /gallery/**  # Map paths to gallery service
+      path: /gallery/**
       service-id: gallery-service
+      stripPrefix: false
+      sensitiveHeaders:
+
+    account-service:
+      path: /account/**
+      service-id: account-service
+      stripPrefix: false
+      sensitiveHeaders:
+
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://registry:8761/eureka/
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://auth-service:5000/uaa/users/current
+
+server:
+  port: 8766

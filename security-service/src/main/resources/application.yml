@@ -1,19 +1,9 @@
 spring:
   application:
     name: security-service
-    data:
-      mongodb:
-        uri: mongodb+srv://root:root1234@cluster0-edkji.mongodb.net/user?replicaSet=Cluster0-shard-0&readPreference=primary&connectTimeoutMS=10000&authSource=admin&authMechanism=SCRAM-SHA-1
-
-
-server:
-  port: 9100
-  servlet:
-    context-path: /uaa
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
-  instance:
-    preferIpAddress: true
+  cloud:
+    config:
+      uri: http://config:8888
+      fail-fast: true
+      password: root1234
+      username: user
