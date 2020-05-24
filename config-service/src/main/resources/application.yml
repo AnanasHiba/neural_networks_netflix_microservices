@@ -1,9 +1,4 @@
 spring:
-  profiles:
-    active: git
----
-spring:
-  profiles: git
   cloud:
     config:
       server:
@@ -11,4 +6,9 @@ spring:
           uri: https://github.com/AnanasHiba/neural_networks_netflix_microservices.git
           search-paths:
             - "ms-config-properties/{application}/{profile}"
-
+  profiles:
+    active: git
+  application:
+    name: config-server
+server:
+  port: 8888
