@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails
 @Document(collection = "users")
 class User(@Id private var username: String, private var password: String): UserDetails{
 
-//    private lateinit var authorities :MutableCollection<out GrantedAuthority>
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority>? {
         return null//this.authorities
